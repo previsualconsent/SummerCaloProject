@@ -44,9 +44,6 @@
 #include "G4SystemOfUnits.hh"
 #include "Randomize.hh"
 
-#include "HepMCG4AsciiReader.hh"
-#include "HepMCG4PythiaInterface.hh"
-
 #define PI 3.1415926535
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -60,15 +57,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(G4int mod, double eta)
   // default generator is particle gun.
   currentGenerator= particleGun= new G4ParticleGun(n_particle);
   currentGeneratorName= "particleGun";
-  hepmcAscii= new HepMCG4AsciiReader();
-#ifdef G4LIB_USE_PYTHIA
-  pythiaGen= new HepMCG4PythiaInterface();
-#else
-  pythiaGen= 0;
-#endif
   gentypeMap["particleGun"]= particleGun;
-  gentypeMap["hepmcAscii"]= hepmcAscii;
-  gentypeMap["pythia"]= pythiaGen;
 
   Detector = (DetectorConstruction*)
              G4RunManager::GetRunManager()->GetUserDetectorConstruction();
@@ -99,8 +88,6 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(G4int mod, double eta)
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
 {
   delete particleGun;
-  delete hepmcAscii;
-  delete pythiaGen;
   delete gunMessenger;
 }
 
