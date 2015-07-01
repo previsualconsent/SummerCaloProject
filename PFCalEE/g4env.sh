@@ -1,20 +1,16 @@
 export USERBASE=`pwd`
-ARCH=x86_64-slc6-gcc46-opt
-source /afs/cern.ch/sw/lcg/contrib/gcc/4.6/${ARCH}/setup.sh 
-export QTHOME=/afs/cern.ch/sw/lcg/external/qt/4.8.4/${ARCH}/
-export G4BASE=/afs/cern.ch/sw/lcg/external/geant4
-export DAWNHOME=/afs/cern.ch/sw/lcg/external/dawn/3_88a/x86_64-slc5-gcc43-opt/
-export G4DAWNFILE_DEST_DIR=${USERBASE}/DawnFiles/
-export HEPMC_DIR=/afs/cern.ch/sw/lcg/external/HepMC/2.06.08/${ARCH}/
-export FASTJET_INSTALL=/afs/cern.ch/sw/lcg/external/fastjet/3.0.3/${ARCH}/
-cd $G4BASE/9.6.p02/${ARCH}/share/Geant4-9.6.2/geant4make/
+
+source /local/grid/cmssoft/cms/slc6_amd64_gcc491/external/gcc/4.9.1-cms/etc/profile.d/init.sh 
+source /local/grid/cmssoft/cms/slc6_amd64_gcc491/external/qt/4.8.1-cms/etc/profile.d/init.sh
+source /local/grid/cmssoft/cms/slc6_amd64_gcc491/external/boost/1.51.0-cms/etc/profile.d/init.sh
+source /local/grid/cmssoft/cms/slc6_amd64_gcc491/external/xz/5.2.1/etc/profile.d/init.sh
+source /local/grid/cmssoft/cms/slc6_amd64_gcc491/external/xerces-c/2.8.0-cms/etc/profile.d/init.sh
+source /local/grid/cmssoft/cms/slc6_amd64_gcc491/external/expat/2.0.1-cms/etc/profile.d/init.sh
+source /local/grid/cmssoft/cms/slc6_amd64_gcc491/lcg/root/5.34.22-cms3/etc/profile.d/init.sh
+
+export G4BASE=/home/user1/phansen/rusack/geant4.10.01.p02-install/
+cd $G4BASE/share/Geant4-10.1.2/geant4make/
 source geant4make.sh
 cd - &> /dev/null
 #for boost latest version
-export BOOSTSYS=/cvmfs/cms.cern.ch/slc6_amd64_gcc472/external/boost/1.47.0-cms
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XERCESCROOT/lib:$HEPMC_DIR/lib:$USERBASE/userlib/lib:$USERBASE/analysis/lib:$FASTJET_INSTALL/lib:$BOOSTSYS/lib
-#source /afs/cern.ch/sw/lcg/contrib/gcc/4.6/x86_64-slc6/setup.sh
-cd /afs/cern.ch/sw/lcg/app/releases/ROOT/5.34.18/${ARCH}/root/
-source bin/thisroot.sh
-cd - &> /dev/null
-export PATH=$DAWNHOME/bin:$PATH:$FASTJET_INSTALL/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$USERBASE/userlib/lib:$USERBASE/analysis/lib

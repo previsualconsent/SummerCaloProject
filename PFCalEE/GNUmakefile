@@ -12,7 +12,7 @@ ifndef G4INSTALL
 endif
 
 CPPFLAGS += -Iuserlib/include/ $(shell root-config --cflags)
-EXTRALIBS += $(shell root-config --glibs) -Luserlib/lib -lPFCalEEuserlib
+EXTRALIBS += $(shell root-config --glibs) -Luserlib/lib -lPFCalEEuserlib -L/local/grid/cmssoft/cms/slc6_amd64_gcc491/external/expat/2.0.1-cms/lib
 
 .PHONY: $(SUBDIRS) all
 all: $(SUBDIRS) lib bin
