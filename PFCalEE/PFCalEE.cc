@@ -38,31 +38,13 @@ int main(int argc,char** argv)
   G4RunManager * runManager = new G4RunManager;
 
   // Set mandatory initialization classes
-  //int version=DetectorConstruction::v_HGCALEE_concept;
-  int version=0;//DetectorConstruction::v_HGCALEE_v5;
-  int model=DetectorConstruction::m_FULLSECTION;
-  //int model=DetectorConstruction::m_SIMPLE_20;
 
-  double eta=2.5;
 
-  if(argc>2) version=atoi(argv[2]);
-  if(argc>3) model=atoi(argv[3]);
-  if(argc>4) eta=atof(argv[4]);
-
-  std::cout << "-- Running version " << version << " model " << model << std::endl;
-
-  std::string absThickW="1.75,1.75,1.75,1.75,1.75,2.8,2.8,2.8,2.8,2.8,4.2,4.2,4.2,4.2,4.2";
-  std::string absThickPb="1,1,1,1,1,2.1,2.1,2.1,2.1,2.1,4.4,4.4,4.4,4.4";
-  std::string dropLayers="";
-  if(argc>5) absThickW = argv[5];
-  if(argc>6) absThickPb = argv[6];
-  if(argc>7) dropLayers = argv[7];
-
-  runManager->SetUserInitialization(new DetectorConstruction(version,model,absThickW,absThickPb,dropLayers));
+  runManager->SetUserInitialization(new DetectorConstruction());
   runManager->SetUserInitialization(new PhysicsList);
 
   // Set user action classes
-  runManager->SetUserAction(new PrimaryGeneratorAction(model,eta));
+  runManager->SetUserAction(new PrimaryGeneratorAction());
   runManager->SetUserAction(new RunAction);
   runManager->SetUserAction(new EventAction);
   runManager->SetUserAction(new SteppingAction);

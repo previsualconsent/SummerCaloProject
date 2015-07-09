@@ -24,8 +24,8 @@ EventAction::EventAction()
   //save some info
   HGCSSInfo *info = new HGCSSInfo();
   info->cellSize(CELL_SIZE_X);
-  info->model(((DetectorConstruction*)G4RunManager::GetRunManager()->GetUserDetectorConstruction())->getModel());
-  info->version(((DetectorConstruction*)G4RunManager::GetRunManager()->GetUserDetectorConstruction())->getVersion());
+  info->model(0);
+  info->version(0);
   
   std::cout << " -- check Info: version = " << info->version()
 	    << " model = " << info->model() << std::endl;

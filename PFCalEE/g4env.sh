@@ -8,7 +8,7 @@ source /local/grid/cmssoft/cms/slc6_amd64_gcc491/external/xerces-c/2.8.0-cms/etc
 source /local/grid/cmssoft/cms/slc6_amd64_gcc491/external/expat/2.0.1-cms/etc/profile.d/init.sh
 source /local/grid/cmssoft/cms/slc6_amd64_gcc491/lcg/root/5.34.22-cms3/etc/profile.d/init.sh
 
-export G4BASE=/home/user1/phansen/rusack/geant4.10.01.p02-install/
+export G4BASE=/local/cms/user/geant4/geant4.10.01.p02-install/
 cd $G4BASE/share/Geant4-10.1.2/geant4make/
 source geant4make.sh
 cd - &> /dev/null

@@ -26,64 +26,13 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 {
 public:
 
-  enum DetectorVersion { 
-    v_CALICE=0,
-    v_HGCALEE_Si80=1,
-    v_HGCALEE_Si120=2,
-    v_HGCALEE_Si200=3,
-    v_HGCALEE_Si500=4,
-    v_HGCALEE_gap1=5,
-    v_HGCALEE_CALICE=6,
-    v_HGCALEE_inverted=7,
-    v_HGCALEE_concept=8,
-    v_HGCALEE_W=9,
-    v_HGCALEE_gap4=10,
-    v_HGCALEE_prePCB=11,
-    v_HGCALEE_v5=12,
-    v_HGCALEE_v5_gap4=13,
-    v_HGCAL=20,
-    v_HGCALHE=21,
-    v_HGCALHEScint=22,
-    v_HGCALHE_CALICE=23,
-    v_HGCALHE_CMSSWv4=24,
-    v_HGCAL_v5=25,
-    v_HGCAL_v5_gap4=26,
-    v_HGCALHE_v5=27,
-    v_HGCALBE_v5=28,
-    v_HGCALEE_v6=30,
-    v_HGCALHE_v6=31,
-    v_HGCALBE_v6=32,
-    v_HGCAL_v6=33,
-    v_HGCALEE_v624=34,
-    v_HGCALEE_v618=35
-  };
-
-  enum DetectorModel {
-    m_SIMPLE_20=0,
-    m_SIMPLE_50=1,
-    m_FULLSECTION=2,
-    m_SIMPLE_100=3
-  };
-
   /**
      @short CTOR
    */
-  DetectorConstruction(G4int ver=DetectorConstruction::v_CALICE, 
-		       G4int mod=DetectorConstruction::m_SIMPLE_20,
-		       std::string absThickW="1.75,1.75,1.75,1.75,1.75,2.8,2.8,2.8,2.8,2.8,4.2,4.2,4.2,4.2,4.2",
-		       std::string absThickPb="1,1,1,1,1,2.1,2.1,2.1,2.1,2.1,4.4,4.4,4.4,4.4",
-		       std::string dropLayer="");
+  DetectorConstruction();
 
-  void buildHGCALFHE(const unsigned aVersion);
-  void buildHGCALBHE(const unsigned aVersion);
-  /**
-     @short calorimeter structure (sampling sections)
-   */
   std::vector<SamplingSection> m_caloStruct;
   std::vector<SamplingSection> *getStructure() { return &m_caloStruct; }
-
-  int getModel() const { return model_; }
-  int getVersion() const { return version_; }
 
   const std::vector<G4LogicalVolume*>  & getSiLogVol() {return m_logicSi; }
   const std::vector<G4LogicalVolume*>  & getAbsLogVol() {return m_logicAbs; }
@@ -102,16 +51,6 @@ public:
    */
   void SetMagField(G4double fieldValue);
   G4UniformMagField* m_magField;      //pointer to the magnetic field
-
-  /**
-     @short set detector model
-   */
-
-  void SetDetModel(G4int model);
-
-  void SetWThick(std::string thick);
-  void SetPbThick(std::string thick);
-  void SetDropLayers(std::string layers);
 
   /**
      @short DTOR
@@ -135,11 +74,6 @@ public:
 
 private:
 
-  //detector version
-  int version_;
-  //integer to define detector model
-  int model_;
-
   //add a pre PCB plate
   bool addPrePCB_;
 
@@ -157,7 +91,7 @@ private:
    */
   G4VPhysicalVolume* ConstructCalorimeter();     
 
-  G4CSGSolid *constructSolid (std::string baseName, G4double thick, G4double zpos);
+  G4CSGSolid *constructSolid (std::string baseName, G4double thick);
  
   std::vector<G4Material* > m_SensitiveMaterial;
   
