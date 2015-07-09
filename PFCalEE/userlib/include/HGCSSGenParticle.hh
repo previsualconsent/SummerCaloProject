@@ -77,8 +77,8 @@ public:
   };
 
   inline double eta() const {
-    double theta = acos(fabs(zpos_)/sqrt(zpos_*zpos_+xpos_*xpos_+ypos_*ypos_));
-    double leta = -1.*log(tan(theta/2.));
+    double n_theta = acos(fabs(zpos_)/sqrt(zpos_*zpos_+xpos_*xpos_+ypos_*ypos_));
+    double leta = -1.*log(tan(n_theta/2.));
     if (zpos_>0) return leta;
     else return -1.*leta;
   };
@@ -88,24 +88,24 @@ public:
   };
 
   inline double phi() const {
-    double x = xpos_;
-    double y = ypos_;
-    if (x==0) return 0;
-    if (x>0) return atan(y/x);
-    else if (y>0) return TMath::Pi()+atan(y/x);
-    else return -1.*TMath::Pi()+atan(y/x);
+    double n_x = xpos_;
+    double n_y = ypos_;
+    if (n_x==0) return 0;
+    if (n_x>0) return atan(n_y/n_x);
+    else if (n_y>0) return TMath::Pi()+atan(n_y/n_x);
+    else return -1.*TMath::Pi()+atan(n_y/n_x);
   };
 
-  inline void setPosition(const double & x, const double & y, const double & z) {
-    xpos_ = x;
-    ypos_ = y;
-    zpos_ = z;
+  inline void setPosition(const double & n_x, const double & n_y, const double & n_z) {
+    xpos_ = n_x;
+    ypos_ = n_y;
+    zpos_ = n_z;
   };
 
-  inline void setMomentum(const double & px, const double & py, const double & pz) {
-    px_ = px;
-    py_ = py;
-    pz_ = pz;
+  inline void setMomentum(const double & n_px, const double & n_py, const double & n_pz) {
+    px_ = n_px;
+    py_ = n_py;
+    pz_ = n_pz;
   };
 
 
